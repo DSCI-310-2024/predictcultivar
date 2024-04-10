@@ -4,14 +4,14 @@
 \alias{create_scatter}
 \title{Create a scatter plot}
 \usage{
-create_scatter(data, scatter1, scatter2, color_var)
+create_scatter(data, x, y, color_var)
 }
 \arguments{
 \item{data}{A dataframe containing the data to plot.}
 
-\item{scatter1}{A variable in the dataframe that will be on the plot's x axis.}
+\item{x}{A variable in the dataframe that will be on the plot's x axis.}
 
-\item{scatter2}{A variable in the dataframe that will be on the plot's y axis.}
+\item{y}{A variable in the dataframe that will be on the plot's y axis.}
 
 \item{color_var}{A variable in the dataframe that will be used to color the points on the plot.}
 }

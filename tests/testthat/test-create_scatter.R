@@ -1,6 +1,3 @@
-# call in the function we are testing
-# source("../../R/create_scatter.R")
-
 # test that the function is returning a ggplot object
 test_that("`create_scatter` should return a ggplot", {
   scatter_plot <- create_scatter(wine_test_data, "alcohol", "total_phenols", "cultivar") # call the function
