@@ -11,7 +11,23 @@
 #' read_and_factor('~/predictcultivar/tests/testthat/data/unfactored_populated_data.csv',
 #' c("cultivar","alcohol"))
 read_and_factor <- function(input_dir, factor_vars = NULL) {
+  # Check if the input directory exists
+  if (!file.exists(input_dir)) {
+    stop("Input file does not exist")
+  }
+
   data <- readr::read_csv(input_dir)
+
+  # Check if factor_vars is a string or a vector of strings
+  if (!is.character(factor_vars) && !all(sapply(factor_vars, is.character))) {
+    stop("factor_vars must be a string or a vector of strings")
+  }
+
+  # If only one variable is given, turn it into a vector
+  if (is.character(factor_vars)) {
+    factor_vars <- as.vector(factor_vars)
+  }
+
   if (!is.null(factor_vars)) {
     for (var in factor_vars) {
       if (var %in% colnames(data)) {

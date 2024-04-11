@@ -1,10 +1,4 @@
-# test that the function is returning a ggplot object
-test_that("`create_scatter` should return a ggplot", {
-  scatter_plot <- create_scatter(wine_test_data, "alcohol", "total_phenols", "cultivar") # call the function
-  expect_true("ggplot" %in% class(scatter_plot), info = "Should return a ggplot object") # expect class to be ggplot
-})
-
-# test that the correct types of variables are being inputted into the function
+# Test that the function throws an error for incorrect input types
 test_that("`create_scatter` should throw an error when incorrect types
 are passed to `data`, `scatter1`, and `scatter2` arguments", {
   expect_error(create_scatter(wine_data_fake, "alcohol", "total_phenols", "cultivar"), info = "Dataframe should be inputted")
@@ -12,7 +6,17 @@ are passed to `data`, `scatter1`, and `scatter2` arguments", {
   expect_error(create_scatter(wine_test_data, "alcohol", "variable2", "cultivar"), info = "Valid y variable should be inputted")
 })
 
-# test that the correct data is being plotted on the axes
+
+
+# Test that the function is returning a ggplot object
+test_that("`create_scatter` should return a ggplot", {
+  scatter_plot <- create_scatter(wine_test_data, "alcohol", "total_phenols", "cultivar") # call the function
+  expect_true("ggplot" %in% class(scatter_plot), info = "Should return a ggplot object") # expect class to be ggplot
+})
+
+
+
+# Test that the correct data is being plotted on the axes
 test_that("`create_scatter` correctly maps data to x and y axes", {
   scatter_plot <- create_scatter(wine_test_data, "alcohol", "total_phenols", "cultivar")
   x_aes <- ggplot2::ggplot_build(scatter_plot)$data[[1]]$x # isolate the values on the x-axis
@@ -21,21 +25,21 @@ test_that("`create_scatter` correctly maps data to x and y axes", {
   expect_equal(y_aes, wine_test_data$total_phenols, info = "Y-axis data should match 'total_phenols' column")
 })
 
-# test that the axis labels have been created correctly
+# Test that the axis labels have been created correctly
 test_that("`create_scatter` has the correct axis labels", {
   scatter_plot <- create_scatter(wine_test_data, "alcohol", "total_phenols", "cultivar") # make the scatterplot
-  expect_equal(ggplot2::ggtitle("Scatter Plot of x vs y"), ggtitle("Scatter Plot of x vs y"), info = "Plot title should be correct")
+  expect_equal(ggplot2::ggtitle("Scatter Plot of x vs y"), ggplot2::ggtitle("Scatter Plot of x vs y"), info = "Plot title should be correct")
   expect_equal(ggplot2::xlab("alcohol"), ggplot2::xlab("alcohol"), info = "X-axis label should be set to 'alcohol'")
   expect_equal(ggplot2::ylab("total_phenols"), ggplot2::ylab("total_phenols"), info = "Y-axis label should be set to 'total_phenols'")
 })
 
-# make sure the same cultivars are colored the same color
+# Test that points of the same class are coloured the same
 test_that("`create_scatter` colors points with the same cultivar the same color", {
   scatter_plot <- create_scatter(wine_test_data, "alcohol", "total_phenols", "cultivar") # create the scatterplot
   color_aes <- ggplot2::ggplot_build(scatter_plot)$data[[1]]$colour # isolate the values for colour
   unique_cultivars <- unique(wine_test_data$cultivar) # get a list of the unique cultivars in our data
 
-  # for loop to check that the cultivars have the same color if they have the same value
+  # for loop to check that the cultivars have the same colour
   for (cultivar in unique_cultivars) {
     points_with_cultivar <- which(wine_test_data$cultivar == cultivar)
     color_for_cultivar <- color_aes[points_with_cultivar[1]]
@@ -44,13 +48,13 @@ test_that("`create_scatter` colors points with the same cultivar the same color"
   }
 })
 
-# make sure different cultivars are colored different colors
+# Test that points of different classes are coloured differently
 test_that("`create_scatter` assigns different colors to different cultivars", {
   scatter_plot <- create_scatter(wine_test_data, "alcohol", "total_phenols", "cultivar") # create the scatterplot
   color_aes <- ggplot2::ggplot_build(scatter_plot)$data[[1]]$colour # isolate the values from colour
   unique_cultivars <- unique(wine_test_data$cultivar) # get a list of the unique cultivars
 
-  # make a for loop to get that the cultivars have different colors
+  # for loop to check that the cultivars have different colours
   for (i in seq_along(unique_cultivars)) {
     points_with_cultivar <- which(wine_test_data$cultivar == unique_cultivars[i])
     color_for_cultivar <- color_aes[points_with_cultivar[1]]

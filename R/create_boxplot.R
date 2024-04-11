@@ -30,3 +30,25 @@ create_boxplot <- function(data, x, y) {
   return(box)
 
   }
+
+# create_boxplot <- function(data, x, y) {
+#   # Convert 'cultivar' to factor
+#   data$cultivar <- factor(data$cultivar)
+#
+#   # Check if x and y exist in the data
+#   if (!(x %in% colnames(data)) || !(y %in% colnames(data))) {
+#     stop("One or both of the inputted variables do not exist in the dataframe")
+#   }
+#
+#   # Make the box plot
+#   box <- ggplot2::ggplot(data, aes(x = {{x}}, y = {{y}})) +
+#     ggplot2::geom_boxplot() +
+#     ggplot2::labs(
+#       title = paste("Box Plot of", x, "vs", y),
+#       x = x,
+#       y = y)
+#
+#   # Return the plot
+#   return(box)
+# }
+#

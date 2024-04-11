@@ -16,7 +16,7 @@
 #' create_scatter(df,"a","b","c")
 create_scatter <- function(data, x, y, color_var) {
   # first check if x and y exist in the data
-  if (!x %in% colnames(data) || !y %in% colnames(data)) {
+  if (!x %in% colnames(data) || !y %in% colnames(data) || !color_var %in% colnames(data)) {
     stop("One or both of the inputted variables do not exist in the dataframe")
   }
 

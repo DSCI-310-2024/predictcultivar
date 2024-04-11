@@ -1,21 +1,6 @@
-# function input for create_output_dir function
-library(ggplot2)
+# function input for tests
+# test data
+wine_test_data <- read.csv("data/unfactored_populated_data.csv")
 
-# test wine data
-wine_test_data <- data.frame(
-  alcohol = c(12, 13, 14, 15),
-  total_phenols = c(2, 3, 4, 5),
-  cultivar = c("A", "B", "A", "C")
-)
-
-# create fake wine data
-wine_data_fake <- "a"
-
-# expected output
-expected_plot <- ggplot() +
-  geom_point() +
-  labs(
-    title = "Scatter Plot of alcohol vs total_phenols",
-    x = "alcohol",
-    y = "total_phenols"
-  )
+# fake data
+wine_data_fake <- "this is not a data frame"
