@@ -19,5 +19,6 @@ Read data at a given directory and factor columns if needed
 }
 \examples{
 read_and_factor('~/predictcultivar/tests/testthat/data/unfactored_populated_data.csv', "cultivar")
-read_and_factor('~/predictcultivar/tests/testthat/data/unfactored_populated_data.csv', c("cultivar","alcohol"))
+read_and_factor('~/predictcultivar/tests/testthat/data/unfactored_populated_data.csv',
+c("cultivar","alcohol"))
 }

@@ -8,7 +8,8 @@
 #'
 #' @examples
 #' read_and_factor('~/predictcultivar/tests/testthat/data/unfactored_populated_data.csv', "cultivar")
-#' read_and_factor('~/predictcultivar/tests/testthat/data/unfactored_populated_data.csv', c("cultivar","alcohol"))
+#' read_and_factor('~/predictcultivar/tests/testthat/data/unfactored_populated_data.csv',
+#' c("cultivar","alcohol"))
 read_and_factor <- function(input_dir, factor_vars = NULL) {
   data <- readr::read_csv(input_dir)
   if (!is.null(factor_vars)) {
