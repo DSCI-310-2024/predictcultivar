@@ -4,10 +4,10 @@
 \alias{model_workflow}
 \title{Simplifies the workflow for fitting and training a knn model}
 \usage{
-model_workflow(train_data, num_folds, range_neighbors, response)
+model_workflow(data, num_folds, range_neighbors, response)
 }
 \arguments{
-\item{train_data}{The training dataset}
+\item{data}{The dataset to be split into training and testing sets}
 
 \item{num_folds}{The desired number of folds to use for cross validation}
 
@@ -23,13 +23,13 @@ Simplifies the workflow for fitting and training a knn model
 }
 \examples{
 set.seed(123)
-train_data <- data.frame(
+data <- data.frame(
 a = rnorm(100),
 b = rnorm(100),
-response = sample(c('a', 'b', 'c'), 100, replace = TRUE)
+response = sample(c(1,2,3), 100, replace = TRUE)
 )
 num_folds <- 5
 range_neighbors <- seq(1, 20)
 response <- "response"
-model_workflow(train_data,num_folds, range_neighbors, response)
+model_workflow(data, num_folds, range_neighbors, response)
 }
