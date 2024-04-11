@@ -4,5 +4,4 @@ wine_test_data <- data.frame(
   cultivar = c("A", "B", "A", "C")
 )
 
-temp_dir <- tempdir()
 wine_data_fake <- "this is not a data frame"
