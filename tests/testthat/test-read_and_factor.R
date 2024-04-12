@@ -1,3 +1,5 @@
+library(testthat)
+
 # Test that the function throws an error for incorrect input types
 test_that("`read_and_factor` should throw an error when incorrect types
 are passed to `input_dir` and `factor_vars`", {

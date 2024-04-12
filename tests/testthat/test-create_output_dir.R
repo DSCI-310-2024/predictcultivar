@@ -1,3 +1,5 @@
+library(testthat)
+
 # Test that the function throws an error for incorrect input types
 test_that("`create_output_dir` should throw an error when incorrect types
 are passed to `output_dir`", {

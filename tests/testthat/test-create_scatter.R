@@ -1,3 +1,5 @@
+library(testthat)
+
 # Test that the function throws an error for incorrect input types
 test_that("`create_scatter` should throw an error when incorrect types
 are passed to `data`, `scatter1`, and `scatter2` arguments", {
