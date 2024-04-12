@@ -2,33 +2,49 @@
 #'
 #' @param data The dataset to be split into training and testing sets
 #' @param num_folds The desired number of folds to use for cross validation
+#' @param response
 #' @param range_neighbors A sequence of the desired values of k
-#' @param response The response variable to use in the model's formula
 #'
 #' @return a fitted model
 #' @export
 #'
 #' @examples
-#' set.seed(123)
 #' data <- data.frame(
-#' a = rnorm(100),
-#' b = rnorm(100),
-#' response = sample(c(1,2,3), 100, replace = TRUE)
+#' a = rnorm(1000),
+#' b = rnorm(1000),
+#' cultivar = sample(c(1,2,3), 1000, replace = TRUE)
 #' )
 #' num_folds <- 5
 #' range_neighbors <- seq(1, 20)
-#' response <- "response"
+#' response <- "cultivar"
 #' model_workflow(data, num_folds, range_neighbors, response)
 model_workflow <- function(data, num_folds, range_neighbors, response) {
   # Split data into train and test sets
   set.seed(123)
+
+  # Check the correct input types are provided
+  if ((!is.data.frame(data)) || (!is.numeric(num_folds)) || (!is.numeric(range_neighbors))) {
+    stop("Incorrect input types were given")
+  }
+
+  # Ensure the response is a variable in the dataframe
+  if (!response %in% colnames(data)) {
+    stop("The response variable does not exist in the dataframe")
+  }
+  # data[[response]]
+  # [[response]]
+
   split <- rsample::initial_split(data, prop = 0.75, strata = response)
   train_data <- rsample::training(split)
   test_data <- rsample::testing(split)
-  train_data$response <- as.factor(train_data$response)
-  test_data$response <- factor(test_data$response)
+  train_data[[response]] <- as.factor(train_data[[response]])
+  test_data[[response]] <- factor(test_data[[response]])
 
   # Preprocessing:
+  recipe <- recipes::recipe(as.formula(paste(response, "~ .")), data = train_data) |>
+    recipes::step_scale(recipes::all_predictors()) |>
+    recipes::step_center(recipes::all_predictors())
+
   recipe <- recipes::recipe(as.formula(paste(response, "~ .")), data = train_data) |>
     recipes::step_scale(recipes::all_predictors()) |>
     recipes::step_center(recipes::all_predictors())
@@ -63,11 +79,11 @@ model_workflow <- function(data, num_folds, range_neighbors, response) {
   predicted_labels <- predictions$.pred_class
 
   # Create a confusion matrix
-  conf_matrix <- caret::confusionMatrix(data=predicted_labels, reference=test_data$response)
+  conf_matrix <- caret::confusionMatrix(data=predicted_labels, reference=test_data[[response]])
 
   # Get the values to pass to the helper function summarize_classes()
   stats_from_conf_matrix <- conf_matrix[[4]]
-  num_classes <- nlevels(test_data$response)
+  num_classes <- nlevels(test_data[[response]])
 
   # Calculate accuracy, precision, f1, recall using the helper function summarize_classes()
   accuracy <- conf_matrix$overall["Accuracy"]

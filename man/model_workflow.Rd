@@ -12,8 +12,6 @@ model_workflow(data, num_folds, range_neighbors, response)
 \item{num_folds}{The desired number of folds to use for cross validation}
 
 \item{range_neighbors}{A sequence of the desired values of k}
-
-\item{response}{The response variable to use in the model's formula}
 }
 \value{
 a fitted model
@@ -22,14 +20,13 @@ a fitted model
 Simplifies the workflow for fitting and training a knn model
 }
 \examples{
-set.seed(123)
 data <- data.frame(
-a = rnorm(100),
-b = rnorm(100),
-response = sample(c(1,2,3), 100, replace = TRUE)
+a = rnorm(1000),
+b = rnorm(1000),
+cultivar = sample(c(1,2,3), 1000, replace = TRUE)
 )
 num_folds <- 5
 range_neighbors <- seq(1, 20)
-response <- "response"
+response <- "cultivar"
 model_workflow(data, num_folds, range_neighbors, response)
 }

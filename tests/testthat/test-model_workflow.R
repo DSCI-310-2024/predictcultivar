@@ -1,34 +1,25 @@
 # Test that the function throws an error for incorrect input types
-test_that("!!!", {
-  # !!!
+test_that("`model_workflow` should throw an error when incorrect types
+are passed to the arguments", {
+  # incorrect object for dataframe
+  expect_error(model_workflow(not_a_df,num_folds_5, range_neighbors_20, response_cul))
+  # one or more non-numeric arguments
+  expect_error(model_workflow(wine_test_data,not_numeric, range_neighbors_20, response_cul))
+  expect_error(model_workflow(wine_test_data,num_folds_5, not_numeric, response_cul))
+  expect_error(model_workflow(wine_test_data,not_numeric, not_numeric, response_cul))
 })
 
+# Test that the function throws an error when the response variable does nto exist in the given data frame
+test_that("`model_workflow` should throw an error when the response_cul variable does not exist" , {
+  expect_error(model_workflow(not_a_df,wine_test_data, range_neighbors_20, non_existing_single_var))
+})
 
-
-# Test that the function is returning a list containing three elements
-# test_that("!!!", {
-#   expect_true(is.list(results))
-#   expect_equal(length(results), 3)
-# })
-#
-# # Test the structure of the accuracies dataframe
-# test_that("!!!", {
-#   expect_true("neighbors" %in% names(results$accuracies))
-#   expect_true("mean" %in% names(results$accuracies))
-# })
-#
-#
-#
-# # Test that the best_k is within the specified range
-# test_that("!!!", {
-#   expect_true(results$best_k %in% seq(1, 10))
-#   })
-#
-# # Test that accuracies are within a logical range
-# test_that("!!!", {
-#   expect_true(all(results$accuracies$mean >= 0 & results$accuracies$mean <= 1))
-#   })
-
+# Test that the function is returning a list containing two elements
+test_that("!!!", {
+  results <- model_workflow(wine_test_data, num_folds_5, range_neighbors_20, "cultivar")
+  expect_true(is.list(results))
+  expect_equal(length(results), 2)
+})
 
 
 

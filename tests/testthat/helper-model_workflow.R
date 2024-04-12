@@ -1,9 +1,14 @@
 # function input for tests
+not_a_df <- 5
+not_numeric <- "a"
+non_existing_single_var <- "chicken"
+
 wine_test_data <- read.csv("data/unfactored_populated_data.csv")
-# wine_data$cultivar <- as.factor(wine_data$cultivar)
-# set.seed(123)
-# split <- initial_split(wine_data, prop = 0.75, strata = cultivar)
-# train_data <- training(split)
-#
-# # expected function outputs
-# results <- model_workflow(train_data, num_folds = 5, range_neighbors = seq(1, 10))
+num_folds_5 <- 5
+range_neighbors_20 <- seq(1, 20)
+response_cul <- "response"
+
+
+# expected function outputs
+
+
