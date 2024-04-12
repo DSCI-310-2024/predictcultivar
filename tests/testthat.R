@@ -8,5 +8,6 @@
 
 library(testthat)
 library(predictcultivar)
+library(lattice)
 
 test_check("predictcultivar")
