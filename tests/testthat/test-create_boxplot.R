@@ -1,4 +1,7 @@
 library(testthat)
+library(caret)
+library(pandoc)
+
 
 # Test that the function throws an error for incorrect input types
 test_that("`create_boxplot` should throw an error for incorrect input types", {
