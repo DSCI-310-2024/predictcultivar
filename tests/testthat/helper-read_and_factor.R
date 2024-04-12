@@ -1,5 +1,5 @@
 # function input for tests
-existing_file_and_input_dir <- "~/predictcultivar/tests/testthat/data/unfactored_populated_data.csv"
+existing_file_and_input_dir <- "data/unfactored_populated_data.csv"
 non_existing_input_dir <- "invalid/input/dir"
 non_existing_file <- "~/predictcultivar/tests/testthat/data/fruits.csv"
 invalid_input_dir <- 5

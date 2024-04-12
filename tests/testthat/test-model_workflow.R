@@ -1,6 +1,8 @@
 library(testthat)
 library(caret)
 library(pandoc)
+library(ggplot2)
+library(lattice)
 
 
 # Test that the function throws an error for incorrect input types
