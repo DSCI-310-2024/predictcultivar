@@ -6,7 +6,7 @@ Authors@R:
 Description: Functions used for Group 5's R analysis. These include creating 
     visualizations, summarizing dataframes and streamlining the workflow of 
     regression models.
-License: `use_mit_license()`
+License: use_mit_license()
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
@@ -29,7 +29,8 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     kknn,
-    pandoc
+    pandoc,
+    lattice
 Config/testthat/edition: 3
 URL: https://github.com/Kaylan-W/predictcultivar
 BugReports: https://github.com/Kaylan-W/predictcultivar/issues
