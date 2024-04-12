@@ -134,7 +134,7 @@ The function can also read the data without converting anything to factors.
 ```{r}
 unfactored_data <- read_and_factor(mtcars_data_directory)
 ```
-
+  
 
 ### Train, tune and fit a knn classification model with `model_workflow()`
 This function streamlines the workflow associated with knn classification models. It:
