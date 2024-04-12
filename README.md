@@ -21,45 +21,46 @@ devtools::install_github("DSCI-310-2024/predictcultivar")
 
 ## Usage
 
-## 1. load_w_new_col()
+## Introduction to  `predictcultivar`
+Welcome to our package! It was designed to streamline our data analysis project and produce code that can be easily used by others. This package contains 6 functions to take your project from Exploratory Data Analysis to finished, tuned `knn` model.
 
-Loading a dataset from an URL and changing its column names:
-When you want to load an online dataset from an URL and at the same time change the names of the columns, usually you have to first load the data and then subsequently change the column names. However, with pRedictwine, you can do it all with a single function with load_W_new_col().
+### Data: 
+To demonstrate the package, we will use the dataset `mtcars` in R. 
+
+```{r load-mtcars, echo=FALSE}
+# Load the mtcars dataset
+data(mtcars)
+
+# Display the first few rows of the dataset
+head(mtcars)
+```
+
+This dataset contains information about 32 cars, such as their weight (`wt`) and fuel consumption (`mpg`). For this demonstration, we will aim to predict what type of transmission a car has (automatic or manual) based on `wt` and `mpg`. 
+
+### Calculate summary statistics with `calc_stats()`
+This function allows you to calculate the mean and standard deviation for all numerical columns in a dataframe.
 
 ```{r}
-dataset_url <- "https://raw.githubusercontent.com/plotly/datasets/master/mtcars.csv"
-
-new_col_names <- c("model", "milespergallon", "cylinder_number", "displacement", "horsepower", "rear_axle_ratio", "weight", "quartermiletime", "engine", "transmission", "forwardgears", "carb")
-
-comma_delimiter <- ","
-
-loaded_dataset <- load_w_new_col(dataset_url, new_col_names, comma_delimiter)
-
-# head() loads the first 6 rows of the tibble
-head(loaded_dataset)
+calc_stats(mtcars)
 ```
-
-Note that the output is a tibble, and as https://tibble.tidyverse.org/ describes it, it is a "modern reimagining of the data frame". 
-
-## 2. create_histogram()
-
-If you want to create a histogram with x labels, different coloured values by group, and specifiable x-axis, y-axis, labels; you can do so with create_histogram(). Usually, with ggplot2, multiple layers have to be specified but with create_histogram(), it is possible to do so in a single function.
-
-Here we show an example through the mtcars dataset. This will load a histogram for the "mpg" values, colored by "am" group. We have specified the x label to be "Miles/(US) gallon", the y label to be "Count", and the font size to be 10.
-
-```{r, include = FALSE}
-library(dplyr)
-
-mtcars_mutated <- mtcars %>%
-  dplyr::mutate(am = as.factor(am))
-```
+### Create boxplots with `create_boxplot()`
+This function produces a boxplot based on the data and variables it is given.
 
 ```{r}
-mpghistogram <- create_histogram(df = mtcars_mutated, x = mpg, group = am,
-                  x_lab = "Miles/(US) gallon", y_lab = "Count", font_size = 10)
-
-mpghistogram
+create_boxplot(mtcars,"wt","mpg")
 ```
+
+The function takes the variable names as strings.
+
+
+### Create scatterplots with `create_scatter()`
+This function produces a scatterplot of `x` versus `y`, with the points coloured according to the variable in `color_var`.
+
+```{r}
+create_scatter(mtcars,"wt","mpg","am")
+```
+
+The function takes the variable names as strings.
 
 ## Example
 
