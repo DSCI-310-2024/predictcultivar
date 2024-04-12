@@ -4,9 +4,10 @@
 # predictcultivar
 
 <!-- badges: start -->
+[![codecov](https://codecov.io/gh/DSCI-310-2024/predictcultivar/graph/badge.svg?token=IwIVq9czpq)](https://codecov.io/gh/DSCI-310-2024/predictcultivar)
 <!-- badges: end -->
 
-The goal of predictcultivar is to …
+The goal of predictcultivar is to help predict the category of unknown objects based on their properties. Here, we used it to predict wine cultivars, but it can be applied widely beyond this. 
 
 ## Installation
 
