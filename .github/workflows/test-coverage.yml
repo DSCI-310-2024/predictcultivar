@@ -48,9 +48,9 @@ jobs:
         with:
           name: coverage-test-failures
           path: ${{ runner.temp }}/package
-          
+
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: DSCI-310-2024/dsci-310_group-5_predicting-wine-cultivars 
+          slug: DSCI-310-2024/predictcultivar
