@@ -45,10 +45,6 @@ model_workflow <- function(data, num_folds, range_neighbors, response) {
     recipes::step_scale(recipes::all_predictors()) |>
     recipes::step_center(recipes::all_predictors())
 
-  recipe <- recipes::recipe(as.formula(paste(response, "~ .")), data = train_data) |>
-    recipes::step_scale(recipes::all_predictors()) |>
-    recipes::step_center(recipes::all_predictors())
-
   # KNN model:
   knn_spec <- parsnip::nearest_neighbor(weight_func = "rectangular", neighbors = parsnip::tune()) |>
     parsnip::set_engine("kknn") |>
@@ -87,9 +83,9 @@ model_workflow <- function(data, num_folds, range_neighbors, response) {
 
   # Calculate accuracy, precision, f1, recall using the helper function summarize_classes()
   accuracy <- conf_matrix$overall["Accuracy"]
-  recall <- summarize_classes(stats_from_conf_matrix,num_classes,"Recall")
-  precision <- summarize_classes(stats_from_conf_matrix,num_classes,"Precision")
-  f1 <- summarize_classes(stats_from_conf_matrix,num_classes,"F1")
+  recall <- predictcultivar::summarize_classes(stats_from_conf_matrix,num_classes,"Recall")
+  precision <- predictcultivar::summarize_classes(stats_from_conf_matrix,num_classes,"Precision")
+  f1 <- predictcultivar::summarize_classes(stats_from_conf_matrix,num_classes,"F1")
 
 
   # Store metrics in a dataframe

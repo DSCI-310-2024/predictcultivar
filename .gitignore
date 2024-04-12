@@ -6,3 +6,6 @@
 .quarto
 renv.lock
 renv/
+inst/doc
+/doc/
+/Meta/
