@@ -6,7 +6,7 @@ Authors@R:
 Description: Functions used for Group 5's R analysis. These include creating 
     visualizations, summarizing dataframes and streamlining the workflow of 
     regression models.
-License: MIT + file LICENSE
+License: MIT + file License.md
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
