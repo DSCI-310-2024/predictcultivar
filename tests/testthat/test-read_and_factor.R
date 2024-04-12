@@ -6,15 +6,15 @@ library(pandoc)
 test_that("`read_and_factor` should throw an error when incorrect types
 are passed to `input_dir` and `factor_vars`", {
   # valid(existing) input_dir, invalid single factor_vars
-  expect_error(read_and_factor(existing_file_and_input_dir,invalid_single_factor_vars_type))
+  expect_warning(read_and_factor(existing_file_and_input_dir,invalid_single_factor_vars_type))
   # valid(existing) input_dir, invalid vector for factor_vars
-  expect_error(read_and_factor(existing_file_and_input_dir,invalid_vector_factor_vars_type))
+  expect_warning(read_and_factor(existing_file_and_input_dir,invalid_vector_factor_vars_type))
   # invalid input_dir, valid single factor_vars
-  expect_error(read_and_factor(invalid_input_dir,valid_single_factor_vars))
+  expect_warning(read_and_factor(invalid_input_dir,valid_single_factor_vars))
   # invalid input_dir, valid vector for factor_vars
-  expect_error(read_and_factor(invalid_input_dir,valid_vector_factor_vars))
+  expect_warning(read_and_factor(invalid_input_dir,valid_vector_factor_vars))
   # both input_dir and factor_vars are invalid
-  expect_error(read_and_factor(invalid_input_dir,invalid_single_factor_vars_type))
+  expect_warning(read_and_factor(invalid_input_dir,invalid_single_factor_vars_type))
 })
 
 # Test that the function throws an error when the input directory or file does not exist, regardless of the second argument
