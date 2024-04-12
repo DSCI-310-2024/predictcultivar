@@ -16,7 +16,7 @@ mixed_2_num <- data.frame(
   d = c(5:8),
   stringsAsFactors = FALSE)
 
-int_data <- 4
+int_data <- 5
 
 # expected function outputs
 only_nums_2_obs_output <- data.frame(

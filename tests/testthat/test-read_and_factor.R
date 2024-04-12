@@ -31,7 +31,7 @@ test_that("`read_and_factor` should throw an warning when given a variable not i
   expect_warning(read_and_factor(existing_file_and_input_dir, one_non_existing_in_vector_factor_vars))
   # a vector of variables is passed, none are in the dataframe
   expect_warning(read_and_factor(existing_file_and_input_dir, all_non_existing_in_vector_factor_vars))
-  })
+})
 
 
 # Test that the function is returning a dataframe object when there is something to convert to a factor
@@ -57,7 +57,7 @@ test_that("`read_and_factor` is converting a valid variable vector to factors", 
   for (var in valid_vector_factor_vars) {
     expect_true(is.factor(data_with_all_factors[[var]]))
   }
-  })
+})
 
 # Test that only existing variables in a vector are being converted to factors
 test_that(
