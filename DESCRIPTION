@@ -23,7 +23,8 @@ Imports:
     stats,
     tibble,
     tune,
-    workflows
+    workflows,
+    kknn
 Suggests: 
     covr,
     knitr,
