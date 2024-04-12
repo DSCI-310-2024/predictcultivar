@@ -25,7 +25,10 @@ Imports:
     tune,
     workflows
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://github.com/Kaylan-W/predictcultivar
 BugReports: https://github.com/Kaylan-W/predictcultivar/issues
+VignetteBuilder: knitr
