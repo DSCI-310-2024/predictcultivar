@@ -18,5 +18,5 @@ a dataframe
 Read data at a given directory and factor columns if needed
 }
 \examples{
-read_and_factor('data/unfactored_populated_data.csv', "cultivar")
+read_and_factor(input_dir, "cultivar")
 }
