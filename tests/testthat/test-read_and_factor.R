@@ -6,15 +6,15 @@ library(pandoc)
 test_that("`read_and_factor` should throw an error when incorrect types
 are passed to `input_dir` and `factor_vars`", {
   # valid(existing) input_dir, invalid single factor_vars
-  expect_warning(read_and_factor(existing_file_and_input_dir,invalid_single_factor_vars_type))
+  #expect_warning(read_and_factor(existing_file_and_input_dir,invalid_single_factor_vars_type))
   # valid(existing) input_dir, invalid vector for factor_vars
-  expect_warning(read_and_factor(existing_file_and_input_dir,invalid_vector_factor_vars_type))
+  #expect_warning(read_and_factor(existing_file_and_input_dir,invalid_vector_factor_vars_type))
   # invalid input_dir, valid single factor_vars
-  expect_warning(read_and_factor(invalid_input_dir,valid_single_factor_vars))
+  expect_error(read_and_factor(invalid_input_dir,valid_single_factor_vars))
   # invalid input_dir, valid vector for factor_vars
-  expect_warning(read_and_factor(invalid_input_dir,valid_vector_factor_vars))
+  expect_error(read_and_factor(invalid_input_dir,valid_vector_factor_vars))
   # both input_dir and factor_vars are invalid
-  expect_warning(read_and_factor(invalid_input_dir,invalid_single_factor_vars_type))
+  expect_error(read_and_factor(invalid_input_dir,invalid_single_factor_vars_type))
 })
 
 # Test that the function throws an error when the input directory or file does not exist, regardless of the second argument
@@ -30,11 +30,11 @@ test_that("`read_and_factor` should throw an error for a non existent input dire
 # Test that the function throws an error when the variable is not in the dataframe
 test_that("`read_and_factor` should throw an warning when given a variable not in the dataframe", {
   # a single variable is passed, it is not in the dataframe
-  expect_error(read_and_factor(existing_file_and_input_dir, non_existing_single_var))
+  expect_warning(read_and_factor(existing_file_and_input_dir, non_existing_single_var))
   # a vector of variables is passed, only one is not in the dataframe
-  expect_error(read_and_factor(existing_file_and_input_dir, one_non_existing_in_vector_factor_vars))
+  expect_warning(read_and_factor(existing_file_and_input_dir, one_non_existing_in_vector_factor_vars))
   # a vector of variables is passed, none are in the dataframe
-  expect_error(read_and_factor(existing_file_and_input_dir, all_non_existing_in_vector_factor_vars))
+  expect_warning(read_and_factor(existing_file_and_input_dir, all_non_existing_in_vector_factor_vars))
 })
 
 

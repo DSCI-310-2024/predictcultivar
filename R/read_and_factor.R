@@ -29,13 +29,20 @@ read_and_factor <- function(input_dir, factor_vars = NULL) {
   }
 
   if (!is.null(factor_vars)) {
-    for (var in factor_vars) {
-      if (var %in% colnames(data)) {
+    # If factor_vars is a single string, convert it to a vector
+    if (length(factor_vars) == 1) {
+      factor_vars <- as.character(factor_vars)
+    }
+
+    # Check if the specified variable exists in the dataframe
+    if (!all(factor_vars %in% colnames(data))) {
+      warning("Invalid variable(s) specified in factor_vars")
+    } else {
+      for (var in factor_vars) {
         data[[var]] <- factor(data[[var]])
-      } else {
-        stop(paste("Variable", var, "not found in the dataframe."))
       }
     }
   }
   return(data)
 }
+
