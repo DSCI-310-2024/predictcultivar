@@ -2,7 +2,7 @@
 #'
 #' @param data The dataset to be split into training and testing sets
 #' @param num_folds The desired number of folds to use for cross validation
-#' @param response
+#' @param response The response variable
 #' @param range_neighbors A sequence of the desired values of k
 #'
 #' @return a fitted model

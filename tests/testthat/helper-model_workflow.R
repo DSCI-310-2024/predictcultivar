@@ -9,6 +9,4 @@ range_neighbors_20 <- seq(1, 20)
 response_cul <- "response"
 
 
-# expected function outputs
-
 

@@ -12,6 +12,8 @@ model_workflow(data, num_folds, range_neighbors, response)
 \item{num_folds}{The desired number of folds to use for cross validation}
 
 \item{range_neighbors}{A sequence of the desired values of k}
+
+\item{response}{The response variable}
 }
 \value{
 a fitted model
