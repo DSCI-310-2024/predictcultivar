@@ -18,6 +18,7 @@ set.seed(123)
 
 ```{r setup}
 library(predictcultivar)
+library(kknn)
 ```
 ## Introduction to  `predictcultivar`
 Welcome to our package! It was designed to streamline our data analysis project and produce code that can be easily used by others. This package contains 6 functions to take your project from Exploratory Data Analysis to finished, tuned `knn` model.
