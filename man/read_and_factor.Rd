@@ -18,5 +18,5 @@ a dataframe
 Read data at a given directory and factor columns if needed
 }
 \examples{
-read_and_factor(existing_file_and_input_dir, "cultivar")
+
 }
