@@ -24,7 +24,8 @@ Imports:
     tibble,
     tune,
     workflows,
-    kknn
+    kknn,
+    pandoc
 Suggests: 
     covr,
     knitr,
