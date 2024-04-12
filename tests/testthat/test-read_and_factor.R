@@ -30,11 +30,11 @@ test_that("`read_and_factor` should throw an error for a non existent input dire
 # Test that the function throws an error when the variable is not in the dataframe
 test_that("`read_and_factor` should throw an warning when given a variable not in the dataframe", {
   # a single variable is passed, it is not in the dataframe
-  expect_warning(read_and_factor(existing_file_and_input_dir, non_existing_single_var))
+  expect_error(read_and_factor(existing_file_and_input_dir, non_existing_single_var))
   # a vector of variables is passed, only one is not in the dataframe
-  expect_warning(read_and_factor(existing_file_and_input_dir, one_non_existing_in_vector_factor_vars))
+  expect_error(read_and_factor(existing_file_and_input_dir, one_non_existing_in_vector_factor_vars))
   # a vector of variables is passed, none are in the dataframe
-  expect_warning(read_and_factor(existing_file_and_input_dir, all_non_existing_in_vector_factor_vars))
+  expect_error(read_and_factor(existing_file_and_input_dir, all_non_existing_in_vector_factor_vars))
 })
 
 
@@ -67,14 +67,21 @@ test_that("`read_and_factor` is converting a valid variable vector to factors", 
 test_that(
   "`read_and_factor` is converting a semi-valid variable vector to factors",
   {
+    # Read the data and factor the specified variables
     data_with_some_factors <-
       read_and_factor(existing_file_and_input_dir,
-                      one_non_existing_in_vector_factor_vars)
-    # iterate through all given variables existing in the dataframe to make sure they've all been factored
-    for (var in one_non_existing_in_vector_factor_vars) {
+                      valid_vector_factor_vars)
+
+    # Iterate through all given variables and check if they exist in the dataframe
+    for (var in valid_vector_factor_vars) {
+      # Check if the variable exists in the dataframe
       if (var %in% colnames(data_with_some_factors)) {
+        # If the variable exists, expect it to be factored
         expect_true(is.factor(data_with_some_factors[[var]]))
+      } else {
+        # If the variable does not exist, produce an error
+        stop(paste("Variable", var, "does not exist in the dataframe"))
       }
     }
-  })
-
+  }
+)

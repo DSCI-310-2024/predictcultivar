@@ -33,11 +33,9 @@ read_and_factor <- function(input_dir, factor_vars = NULL) {
       if (var %in% colnames(data)) {
         data[[var]] <- factor(data[[var]])
       } else {
-        warning(paste("Variable", var, "not found in the dataframe."))
+        stop(paste("Variable", var, "not found in the dataframe."))
       }
     }
   }
   return(data)
 }
-
-
